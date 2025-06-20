@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thread Web Sederhana</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f0f0f0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #thread-form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    #thread-form textarea {
+      resize: vertical;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    #thread-form button {
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .thread {
+      background: white;
+      padding: 15px;
+      margin: 10px auto;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Thread Diskusi</h1>
+
+  <div id="thread-form">
+    <textarea id="threadInput" rows="4" placeholder="Tulis sesuatu..."></textarea>
+    <button onclick="postThread()">Kirim</button>
+  </div>
+
+  <div id="thread-container"></div>
+
+  <script>
+    function postThread() {
+      const input = document.getElementById("threadInput");
+      const container = document.getElementById("thread-container");
+
+      if (input.value.trim() === "") {
+        alert("Isi thread tidak boleh kosong!");
+        return;
+      }
+
+      const newThread = document.createElement("div");
+      newThread.className = "thread";
+      newThread.textContent = input.value;
+
+      container.prepend(newThread); // thread terbaru muncul di atas
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>
